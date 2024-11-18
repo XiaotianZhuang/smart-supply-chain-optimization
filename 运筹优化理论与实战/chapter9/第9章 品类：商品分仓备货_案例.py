@@ -111,12 +111,12 @@ class InputData:
         # 主营仓库
         self.main_wh_set = set(["一号仓库", "二号仓库", "三号仓库", "四号仓库"])  # 主营仓库集合
         # 不能在一起的品类
-        self.not_in_one_wh = [["饮用水", "组装电脑"], ["手机", "饮用水"]]
+        self.not_in_one_wh = [["品类2002", "品类1534"], ["品类759", "品类2002"]]#饮用水：品类2002；组装电脑：品类1534；手机：品类759
 
         # 不能放该仓的品类
-        self.wh_not_in_cate = {"一号仓库": ["口罩", "耳罩/耳包"]}
+        self.wh_not_in_cate = {"一号仓库": ["品类388", "品类1593"]}#口罩：品类388；耳罩/耳包：品类1593
         # 只能放该仓的品类
-        self.cate_only_in_wh = {"二号仓库": ["插座", "线缆"]}
+        self.cate_only_in_wh = {"二号仓库": ["品类843", "品类1529"]}#插座：品类843；线缆：品类1529
 
 
 class ItemPlanBaseModelNew:
@@ -172,7 +172,7 @@ class ItemPlanBaseModelNew:
             input_data.inv_dict[t, i] for t in input_data.T) for i in input_data.cate_set) >= input_data.wh_B_type[j] *
                      input_data.inv_upp_dict[j] * u[j]
                      for j in input_data.wh_set)  # B件型占比
-         # # 如果与书中前面章节件型限制约束相同，可修改为对应的件型限制如下：
+        #  # 如果与书中前面章节件型限制约束相同，可修改为对应的件型限制如下：
         # m.addConstrs(gp.quicksum(x[i, j] * input_data.cate_type_proportion_dict[i, "A"] *
         #     input_data.inv_dict[t, i] for i in input_data.cate_set) >= input_data.wh_A_type[j] *
         #              input_data.inv_upp_dict[j] * u[j]
